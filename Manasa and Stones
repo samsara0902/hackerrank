@@ -1,0 +1,15 @@
+int* stones(int n, int a, int b, int* result_count)
+{
+    int i = 0, c = (a <= b) ? a : b, d = abs(a - b), t = (a != b) ? n : 1;
+    
+    int * answer = malloc(t * sizeof(int));
+        
+    *(answer+0) = 0 + c * (n-1);
+        
+    for (i = 1; i < t; ++i)
+        *(answer+i) = *(answer+i-1) + d;
+    
+    *result_count = t;
+        
+    return answer;
+}
