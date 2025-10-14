@@ -1,0 +1,6 @@
+def flippingMatrix(matrix):
+    subarraysum = 0
+    for i in range(len(matrix) // 2):
+        for j in range(len(matrix) // 2):
+            subarraysum += max((matrix[i][j], matrix[-i - 1][j], matrix[i][-j - 1], matrix[-i - 1][-j - 1]))
+    return subarraysum
