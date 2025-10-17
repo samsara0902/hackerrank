@@ -1,0 +1,22 @@
+def lilysHomework(arr):
+    n=len(arr)
+    arrSort=sorted(arr)
+    ind={arrSort[i]:i for i in range(n)}
+    arr1=[ind[x] for x in arr]
+    arr2=arr1.copy()
+    arr2.reverse()
+    def find(ar):
+        change=0
+        for i in range(n):
+            j=i
+            turn=False
+            while ar[j]!=j:
+                temp=j
+                j=ar[j]
+                ar[temp]=temp
+                change+=1
+                turn=True
+            if turn:
+                change-=1
+        return change
+    return min(find(arr1),find(arr2))
