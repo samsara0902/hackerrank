@@ -1,0 +1,8 @@
+
+    temp = set(arr)
+    count = 0
+    for i in range(len(arr)):
+        diff = arr[i] - k
+        if diff in temp:
+            count += 1
+    return count
