@@ -1,18 +1,16 @@
-long gridlandMetro(int n, int m, int k, vector<vector<int>> track) {
-    sort(track.begin(), track.end(),
-        [] (const auto & a, const auto & b) {
-            return a[0] < b[0] || (a[0] == b[0] && a[1] < b[1]);
-        });
-    long lamps = 0;
-    auto it = track.cbegin();
-    for (int r = 1; r <= n; ++r) {
-        int from = 1;
-        while (it < track.cend() && r == it[0][0]) {
-            if (from < it[0][1]) lamps += it[0][1] - from;
-            from = max(from, it[0][2] + 1);
-            ++it;
-        }
-        if (from <= m) lamps += (m + 1 - from);
-    }
-    return lamps;
-}
+def gridlandMetro(n,m,k,track):
+    occupied,log=0,{}
+    for i in track:
+        if i[0] not in log:
+            log[i[0]]=[i[1],i[2]]
+            occupied+=i[2]-i[1]+1
+        else:
+            l,r=log[i[0]][0],log[i[0]][1]
+            if i[1]<=r:
+                if i[2]>r:
+                    log[i[0]]=[l,i[2]]
+                    occupied+=i[2]-r
+            else:
+                log[i[0]]=[i[1],i[2]]
+                occupied+=i[2]-i[1]+1
+    return n*m-occupied
