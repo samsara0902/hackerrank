@@ -1,0 +1,15 @@
+def largestRectangle(h):
+    
+    maxx=0
+    for i in range(len(h)):
+        j=i
+        while(j<len(h) and h[j]>=h[i]):
+            j+=1
+        k=(j-i)
+        j=i
+        while(j>-1 and h[j]>=h[i]):
+            j-=1
+        k+=(i-1-j)
+        maxx=max(maxx,h[i]*k)
+        
+    return maxx
